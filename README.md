@@ -42,8 +42,7 @@ odo abstracts away complex Kubernetes and OpenShift Container Platform concepts 
 
    `odo url create --port 8080`
 
-
-## Deploying your first devfile
+## Devfile
 
 1. Listing all available devfile components 
    `odo catalog list components`
@@ -70,7 +69,7 @@ odo abstracts away complex Kubernetes and OpenShift Container Platform concepts 
  
    `odo url create --host <hostname>`
    
-   Eg: `odo url create --host cpat-ocp44.us-east.containers.appdomain.cloud`
+   Eg: `odo url create --host ocp44.us.appdomain.cloud`
    
 7. Push change to the cluster 
     `odo push`
@@ -84,3 +83,34 @@ odo abstracts away complex Kubernetes and OpenShift Container Platform concepts 
 10. To delete the application :
     `odo delete`
     
+## Creating a Java applications using devfiles
+
+**NOTE** Technology Preview feature only. Don't use in production. 
+1. Log in to the Openshift cluster and select the project you want to deploy your application. 
+    `oc project <project name>`
+2. Create a directory to store the source code of your component: 
+    `mkdir <directory-name>`
+3. Create a component configuration of Spring Boot component type named myspring and download its sample project: 
+
+    `odo create java-spring-boot myspring --downloadSource`
+   
+   The odo create command downloads the associated devfile.yaml file from the recorded devfile registries. 
+4. Create a URL to access the deployed component: 
+    `odo url create --host <hostname>`
+    eg: `odo url create --host cpat-dev.us-east.containers.appdomain.cloud`
+    
+5. Push the component to the cluster: 
+    `odo push`
+    
+6. Verify the resources that got created:
+    ```
+       oc get deployments 
+       oc get pods 
+       oc get svc 
+       oc get routes 
+    ```   
+7. List the URLs of the component to verify that the component was pushed successfully: 
+    `odo url list`
+    
+8.  View your deployed application by using the generated URL:
+    `curl http://myspring-8080.<domain-name>`
