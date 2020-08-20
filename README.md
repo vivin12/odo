@@ -115,25 +115,27 @@ odo abstracts away complex Kubernetes and OpenShift Container Platform concepts 
 8.  View your deployed application by using the generated URL:
     `curl http://myspring-8080.<domain-name>`
 
-## Node.js component with existing devfile
+## Deployemnt examples
 
-  odo create mynodejs (devfile exists in current working directory)
-  odo create mynodejs --devfile ./devfile.yaml (devfile exists in any other directory)
-  odo create mynodejs --devfile https://raw.githubusercontent.com/elsony/devfile-registry/master/devfiles/nodejs/devfile.yaml (devfile exists in network)
+1. Node.js component with existing devfile
 
-## Node.js component with the source in './frontend' directory
+   odo create mynodejs (devfile exists in current working directory)
+   odo create mynodejs --devfile ./devfile.yaml (devfile exists in any other directory)
+   odo create mynodejs --devfile https://raw.githubusercontent.com/elsony/devfile-registry/master/devfiles/nodejs/devfile.yaml (devfile exists in network)
 
-  odo create nodejs frontend --context ./frontend
+2. Node.js component with the source in './frontend' directory
 
-## Create new Java component with binary named sample.jar in './target' directory
+   odo create nodejs frontend --context ./frontend
+
+3. Create new Java component with binary named sample.jar in './target' directory
    
    odo create java:8  --binary target/sample.jar
 
-## Create new Node.js component with source from remote git repository
-  odo create nodejs --git https://github.com/openshift/nodejs-ex.git
+4. Create new Node.js component with source from remote git repository
+   odo create nodejs --git https://github.com/openshift/nodejs-ex.git
 
-## Create new Node.js component with custom ports and environment variables
-  odo create nodejs --port 8080,8100/tcp,9100/udp --env key=value,key1=value1
+5. Create new Node.js component with custom ports and environment variables
+   odo create nodejs --port 8080,8100/tcp,9100/udp --env key=value,key1=value1
 
-## Create new Node.js component and download the sample project named nodejs-starter
-  odo create nodejs --starter=nodejs-starter
+6. Create new Node.js component and download the sample project named nodejs-starter
+   odo create nodejs --starter=nodejs-starter
